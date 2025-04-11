@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">PulseUp</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_prtracker">PR Tracker</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="show_less">Show less</string>
+    <string name="show_more">Show more</string>
+
+    <!-- PRTracker Strings -->
+    <string name="attention">Attention</string>
+    <string name="back_button">Back</string>
+    <string name="delete">Delete</string>
+    <string name="delete_question">Are you sure you want to delete?</string>
+    <string name="no_workout_description">Oops!\nNo PRs in have been added.\nTap + to add.</string>
+    <string name="edit_workout_title">Edit Workout</string>
+    <string name="item">Item</string>
+    <string name="workout_detail_title">Workout Details</string>
+    <string name="workout_entry_title">Add Workout</string>
+    <string name="workout_name_req">Workout Name*</string>
+    <string name="workout_reps_req">Reps/Weight*</string>
+    <string name="no">No</string>
+    <string name="notes">Notes</string>
+    <string name="reps">Reps/Weight</string>
+    <string name="workout_notes">Workout Notes</string>
+    <string name="save_action">Save</string>
+    <string name="yes">Yes</string>
+    <string name="required_fields">*required fields</string>
+
+</resources>
