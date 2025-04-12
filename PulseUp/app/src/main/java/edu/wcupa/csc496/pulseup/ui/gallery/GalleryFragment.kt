@@ -37,6 +37,8 @@ class GalleryFragment : Fragment() {
 
             setContent {
                 PRTrackerTheme {
+                    // not sure if this Surface is actually doing anything for you here
+                    // i.e. if you remove it you may not notice any difference
                     Surface(
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
