@@ -4,6 +4,7 @@ package edu.wcupa.csc496.pulseup.ui.gallery
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.material.icons.Icons.Filled
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -28,8 +29,10 @@ import edu.wcupa.csc496.pulseup.R.string
 import edu.wcupa.csc496.pulseup.ui.gallery.ui.navigation.WorkoutNavHost
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.layout.wrapContentHeight
 
 @Composable
 fun PRApp(navController: NavHostController = rememberNavController()) {
@@ -48,8 +51,20 @@ fun PRTopAppBar(
     scrollBehavior: TopAppBarScrollBehavior? = null,
     navigateUp: () -> Unit = {},
 ) {
+    // i added this to check where the issue is coming from, it shows up in logcat now
+    println("padding = ${WindowInsets.statusBars.asPaddingValues().calculateTopPadding()}")
     CenterAlignedTopAppBar(
         title = {
+            /*
+            Instead of nested if, a when statement with an enum would be better here
+            E.g. when (someEnumName) {
+                isHomeScreen -> Text("Home")
+                isEditScreen -> Text("Edit")
+                isEntryScreen -> Text("Entry")
+                isDetailsScreen -> Text("Details")
+            }
+             */
+
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 if (isHomeScreen) {
                     Text("Home", style = MaterialTheme.typography.titleLarge)
@@ -67,7 +82,7 @@ fun PRTopAppBar(
                 }
             }
         },
-        modifier = modifier,
+        modifier = modifier.padding(),
         scrollBehavior = scrollBehavior,
         navigationIcon = {
             if (canNavigateBack) {
@@ -81,6 +96,8 @@ fun PRTopAppBar(
         },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
             containerColor = Color(0xFFF1F0EF)
-        )
+        ),
+        /// this one line solves your issue
+        windowInsets = WindowInsets(top = 0)
     )
 }

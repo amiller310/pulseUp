@@ -36,6 +36,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PlatformImeOptions
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -74,33 +75,34 @@ fun WorkoutEntryScreen(
                 navigateUp = onNavigateUp
             )
         },
-        contentWindowInsets = WindowInsets(0, 0, 0, 0)
-    ) { innerPadding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        ) {
-            WorkoutEntryBody(
-                workoutUiState = viewModel.workoutUiState,
-                onWorkoutValueChange = viewModel::updateUiState,
-                onSaveClick = {
-                    coroutineScope.launch {
-                        viewModel.saveWorkout()
-                        navigateBack()
-                    }
-                },
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
+        content = { innerPadding ->
+            Box(
                 modifier = Modifier
-                    .padding(
-                        start = innerPadding.calculateStartPadding(LocalLayoutDirection.current),
-                        end = innerPadding.calculateEndPadding(LocalLayoutDirection.current),
-                        top = innerPadding.calculateTopPadding()
-                    )
-                    .verticalScroll(rememberScrollState())
-                    .fillMaxWidth()
-            )
+                    .fillMaxSize()
+                    .padding(innerPadding)
+            ) {
+                WorkoutEntryBody(
+                    workoutUiState = viewModel.workoutUiState,
+                    onWorkoutValueChange = viewModel::updateUiState,
+                    onSaveClick = {
+                        coroutineScope.launch {
+                            viewModel.saveWorkout()
+                            navigateBack()
+                        }
+                    },
+                    modifier = Modifier
+                        .padding(
+                            start = innerPadding.calculateStartPadding(LocalLayoutDirection.current),
+                            end = innerPadding.calculateEndPadding(LocalLayoutDirection.current),
+                            top = innerPadding.calculateTopPadding()
+                        )
+                        .verticalScroll(rememberScrollState())
+                        .fillMaxWidth()
+                )
+            }
         }
-    }
+    )
 }
 
 @Composable
